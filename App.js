@@ -4,6 +4,7 @@ import Welcome from "./screens/Welcome";
 import { I18nManager } from "react-native";
 import { Fragment } from "react";
 import Navbar from "./components/Navbar";
+import Home from "./screens/Home.js";
 
 I18nManager.forceRTL(true); //? RTL support (this will contain content in hebrew!)
 I18nManager.allowRTL(true);
@@ -14,7 +15,7 @@ export default function App() {
       <StatusBar style="auto" />
       <SafeAreaView style={styles.container}>
         <Navbar />
-        <Welcome />
+        <Home />
       </SafeAreaView>
     </Fragment>
   );
