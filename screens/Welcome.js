@@ -40,7 +40,7 @@ export default function Welcome() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: lightTheme.backgroundColor,
+    backgroundColor: "#fff",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "right",
@@ -59,10 +59,9 @@ const styles = StyleSheet.create({
   buttons: {
     marginTop: 50,
     flexDirection: "row",
-    
   },
   primaryButtonContainer: {
     marginRight: 10,
-    marginLeft: 20
+    marginLeft: 20,
   },
 });
