@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Home from "./screens/Home.js";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import FAQ from "./screens/FAQ";
 
 I18nManager.forceRTL(true);
 I18nManager.allowRTL(true);
@@ -48,7 +49,7 @@ export default function App() {
             />
             <Tab.Screen
               name="שאלות נפוצות"
-              component={Welcome}
+              component={FAQ}
               options={{
                 tabBarIcon: () => (
                   <Image

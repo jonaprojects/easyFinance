@@ -11,9 +11,9 @@ export default function Card(props) {
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
-        elevation: 5, // required for Android shadow
-        padding: 10,
-        borderRadius: 11,
+        elevation: 3, // required for Android shadow
+        padding: 15,
+        borderRadius: 25,
       }}
     >
       {props.children}

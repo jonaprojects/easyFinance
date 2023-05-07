@@ -5,7 +5,7 @@ export default lightTheme = {
   link: "#0072C6",
   text: "#000000",
   navbar: {
-    background: "#92E3A9",
+    background: "#5bdda7",
   },
   secondaryText: "#676767",
   card: {
@@ -14,6 +14,11 @@ export default lightTheme = {
     text: "#676767",
     link: "#0072C6",
   },
-  background: "#FCFAFA",
+  accordion: {
+    background: "#ffffff",
+    text: "#000000",
+    icon: "#000000",
+  },
+  background: "#F2F2F2",
   underline: "#92E3A9",
 };

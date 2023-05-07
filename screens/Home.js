@@ -53,7 +53,7 @@ export default function Home() {
   ];
   const renderTerm = ({ item }) => {
     return (
-      <View style={{ width: 300, marginRight: 20 }}>
+      <View style={{ width: 325, marginRight: 20 }}>
         <Card>
           <CardContent title={item.name} text={item.description} />
         </Card>
@@ -90,9 +90,8 @@ export default function Home() {
           onChangeText={onChangeSearchQueryHandler}
           style={{
             backgroundColor: "#fff",
-            borderRadius: 5,
+            borderRadius: 15,
             borderColor: "#8F8F8F",
-            borderWidth: 1,
           }}
         />
         <View style={styles.resultsHeaderContainer}>
@@ -115,7 +114,8 @@ const styles = StyleSheet.create({
     marginLeft: 30,
   },
   popularHeaderContainer: {
-    marginTop: 20,
+    marginTop: 25,
+    marginBottom: 10,
   },
   popularTermsContainer: {
     marginTop: 10,
