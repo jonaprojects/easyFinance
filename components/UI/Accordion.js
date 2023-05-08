@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import {
   View,
   Text,
@@ -10,8 +10,15 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import lightTheme from "../../themes/lightTheme";
+import darkTheme from "../../themes/darkTheme";
+import CurrentTheme from "../../contexts/ThemeContext";
 
 const AccordionListItem = ({ title, children, openAtStart }) => {
+  //? handling the theme context (light or dark mode)
+  const [themeContext, setThemeContext] = useContext(CurrentTheme);
+  const theme = themeContext === "light" ? lightTheme : darkTheme;
+  const styles = getStyles(theme);
+
   const [open, setOpen] = useState(false);
   const animatedController = useRef(
     new Animated.Value(openAtStart ? 1 : 0)
@@ -62,7 +69,7 @@ const AccordionListItem = ({ title, children, openAtStart }) => {
             <MaterialIcons
               name="keyboard-arrow-down"
               size={25}
-              color={lightTheme.accordion.icon}
+              color={theme.accordion.icon}
             />
           </Animated.View>
         </View>
@@ -82,34 +89,35 @@ const AccordionListItem = ({ title, children, openAtStart }) => {
 };
 export default AccordionListItem;
 
-const styles = StyleSheet.create({
-  bodyBackground: {
-    backgroundColor: lightTheme.accordion.background,
-    overflow: "hidden",
-  },
-  title: {
-    color: lightTheme.accordion.color,
-    marginRight: 8,
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  titleContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingTop: 15,
-    paddingBottom: 15,
-    paddingLeft: 15,
-    paddingRight: 15,
-    backgroundColor: lightTheme.accordion.background,
-  },
-  bodyContainer: {
-    position: "absolute",
-    bottom: 0,
-    backgroundColor: lightTheme.accordion.background,
-    width: "100%",
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-});
+const getStyles = (theme) =>
+  StyleSheet.create({
+    bodyBackground: {
+      backgroundColor: theme.accordion.background,
+      overflow: "hidden",
+    },
+    title: {
+      color: theme.accordion.title,
+      marginRight: 8,
+      fontSize: 18,
+      fontWeight: "bold",
+    },
+    titleContainer: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      paddingTop: 15,
+      paddingBottom: 15,
+      paddingLeft: 15,
+      paddingRight: 15,
+      backgroundColor: theme.accordion.background,
+    },
+    bodyContainer: {
+      position: "absolute",
+      bottom: 0,
+      backgroundColor: theme.accordion.background,
+      width: "100%",
+      paddingLeft: 10,
+      paddingRight: 10,
+    },
+  });

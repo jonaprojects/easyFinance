@@ -1,13 +1,17 @@
 import CustomButton from "./CustomButton";
 import lightTheme from "../../themes/lightTheme.js";
-// TODO: update this component to support a context of light/dark theme and update accordingly
+import darkTheme from "../../themes/darkTheme";
+import CurrentTheme from "../../contexts/ThemeContext";
+import React, { useContext } from "react";
 
 export default function PrimaryButton(props) {
+  const [themeContext, setThemeContext] = useContext(CurrentTheme);
+  const theme = themeContext === "light" ? lightTheme : darkTheme;
   return (
     <CustomButton
       size={props.size}
-      backgroundColor={lightTheme.primary}
-      color="#000000"
+      backgroundColor={theme.primaryButton.background}
+      color={theme.primaryButton.text}
       onPress={props.onPress}
     >
       {props.children}

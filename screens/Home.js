@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   View,
   StyleSheet,
@@ -7,6 +7,9 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
+import CurrentTheme from "../contexts/ThemeContext.js";
+import lightTheme from "../themes/lightTheme.js";
+import darkTheme from "../themes/darkTheme.js";
 import Navbar from "../components/Navbar.js";
 import Header from "../components/UI/Header.js";
 import SubHeader from "../components/UI/SubHeader.js";
@@ -17,6 +20,11 @@ import CardContent from "../components/UI/Card/CardContent.js";
 import { Searchbar } from "react-native-paper";
 
 export default function Home() {
+  const [themeContext, setThemeContext] = useContext(CurrentTheme);
+  console.log(`the theme context is ${themeContext} `);
+  const theme = themeContext === "light" ? lightTheme : darkTheme;
+  const styles = getStyles(theme);
+
   const noResults = <Text>אין תוצאות.</Text>;
   const [results, setResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -102,39 +110,39 @@ export default function Home() {
     </View>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: lightTheme.backgroundColor,
-    textAlign: "right",
-    backgroundColor: "#FBFBFB",
-  },
-  contentContainer: {
-    marginRight: 30,
-    marginLeft: 30,
-  },
-  popularHeaderContainer: {
-    marginTop: 25,
-    marginBottom: 10,
-  },
-  popularTermsContainer: {
-    marginTop: 10,
-    marginBottom: 10,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingRight: 4,
-    paddingLeft: 4,
-  },
-  termsListContainer: {
-    marginLeft: 15,
-    marginRight: 15,
-  },
-  searchHeaderContainer: {
-    marginTop: 20,
-    marginBottom: 10,
-  },
-  resultsHeaderContainer: {
-    marginTop: 20,
-    marginBottom: 10,
-  },
-});
+const getStyles = (theme) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.background,
+      textAlign: "right",
+    },
+    contentContainer: {
+      marginRight: 30,
+      marginLeft: 30,
+    },
+    popularHeaderContainer: {
+      marginTop: 25,
+      marginBottom: 10,
+    },
+    popularTermsContainer: {
+      marginTop: 10,
+      marginBottom: 10,
+      paddingTop: 10,
+      paddingBottom: 10,
+      paddingRight: 4,
+      paddingLeft: 4,
+    },
+    termsListContainer: {
+      marginLeft: 15,
+      marginRight: 15,
+    },
+    searchHeaderContainer: {
+      marginTop: 20,
+      marginBottom: 10,
+    },
+    resultsHeaderContainer: {
+      marginTop: 20,
+      marginBottom: 10,
+    },
+  });

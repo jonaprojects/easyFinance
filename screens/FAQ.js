@@ -1,11 +1,18 @@
 import { View, StyleSheet, Text, ScrollView } from "react-native";
-import lightTheme from "../themes/lightTheme";
 import AccordionContent from "../components/UI/AccordionContent";
 import SecondaryText from "../components/UI/SecondaryText";
 import { Divider } from "react-native-paper";
 import Header from "../components/UI/Header";
+import lightTheme from "../themes/lightTheme";
+import darkTheme from "../themes/darkTheme";
+import CurrentTheme from "../contexts/ThemeContext";
+import { useContext } from "react";
 
 export default function FAQ(props) {
+  const [themeContext, setThemeContext] = useContext(CurrentTheme);
+  const theme = themeContext === "light" ? lightTheme : darkTheme;
+  const styles = getStyles(theme);
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -65,18 +72,19 @@ export default function FAQ(props) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: lightTheme.background,
-  },
-  headerContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: 20,
-    marginBottom: 25,
-  },
-  accordionContainer: {
-    marginTop: 10,
-  },
-});
+const getStyles = (theme) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.background,
+    },
+    headerContainer: {
+      flexDirection: "row",
+      justifyContent: "center",
+      marginTop: 20,
+      marginBottom: 25,
+    },
+    accordionContainer: {
+      marginTop: 10,
+    },
+  });

@@ -61,7 +61,7 @@ export default function CustomButton(props) {
     >
       <Text
         style={{
-          color: "#000",
+          color: props.color ?? "#000",
           fontSize: units.fontSize,
           fontWeight: props.bold ?? "bold",
         }}

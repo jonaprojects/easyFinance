@@ -6,6 +6,16 @@ export default lightTheme = {
   text: "#000000",
   navbar: {
     background: "#5bdda7",
+    text: "#000000",
+    icon: "#000000",
+  },
+  primaryButton: {
+    background: "#B3FFC6",
+    text: "#000000",
+  },
+  secondaryButton: {
+    background: "#C3D5E8",
+    text: "#000000",
   },
   secondaryText: "#676767",
   card: {
@@ -16,7 +26,8 @@ export default lightTheme = {
   },
   accordion: {
     background: "#ffffff",
-    text: "#000000",
+    title: "#313130",
+    text: "#676767",
     icon: "#000000",
   },
   background: "#F2F2F2",
