@@ -1,11 +1,7 @@
 import React, { useContext } from "react";
 import { View, StyleSheet, Text, Image, Pressable } from "react-native";
 import lightTheme from "../themes/lightTheme";
-import { StatusBar } from "expo-status-bar";
-import { Entypo } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
-import { FontAwesome } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
 import CurrentTheme from "../contexts/ThemeContext";
 
 export default function Navbar() {
@@ -26,15 +22,22 @@ export default function Navbar() {
     <View style={styles.navbarContainer}>
       <View style={styles.settingsContainer}>
         <Pressable onPress={toggleTheme}>
-          <Feather name="sun" size={24} color={theme.navbar.icon} />
+          {themeContext === "dark" ? (
+            <Feather name="sun" size={24} color={theme.navbar.icon} />
+          ) : (
+            <Image
+              source={require("../assets/darkTheme.png")}
+              style={{ width: 24, height: 24 }}
+            />
+          )}
         </Pressable>
       </View>
       <Pressable style={styles.logoContainer}>
+        <Text style={styles.logoText}>כלכלה קלה</Text>
         <Image
           source={require("../assets/lifeboat.png")}
           style={{ width: 32, height: 32 }}
         />
-        <Text style={styles.logoText}>כלכלה קלה</Text>
       </Pressable>
     </View>
   );
@@ -47,7 +50,6 @@ const getStyles = (theme) =>
       paddingBottom: 12,
       flexDirection: "row",
       backgroundColor: theme.navbar.background,
-      marginTop: 25,
       paddingRight: 20,
       flexDirection: "row",
       alignItems: "center",

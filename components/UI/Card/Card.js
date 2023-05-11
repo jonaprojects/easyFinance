@@ -9,17 +9,23 @@ export default function Card(props) {
 
   return (
     <Pressable
+      android_ripple={{
+        color: theme.card.rippleColor,
+      }}
       style={{
         backgroundColor: props.backgroundColor ?? theme.card.background,
         shadowOffset: {
           width: 0,
           height: 4,
         },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 3, // required for Android shadow
+        shadowOpacity: 0.5,
+        shadowRadius: 25,
+        elevation: theme.card.shadowElevation, // required for Android shadow
         padding: 15,
-        borderRadius: 25,
+        borderRadius: 15,
+        borderWidth: theme.card.borderWidth ?? 0,
+        borderColor: theme.card.borderColor ?? "#000000",
+        shadowColor: theme.card.shadowColor,
       }}
     >
       {props.children}

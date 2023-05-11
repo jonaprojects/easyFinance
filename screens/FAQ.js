@@ -6,7 +6,8 @@ import Header from "../components/UI/Header";
 import lightTheme from "../themes/lightTheme";
 import darkTheme from "../themes/darkTheme";
 import CurrentTheme from "../contexts/ThemeContext";
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
+//? loading some icons for the accordion components
 
 export default function FAQ(props) {
   const [themeContext, setThemeContext] = useContext(CurrentTheme);
@@ -21,7 +22,17 @@ export default function FAQ(props) {
       <ScrollView>
         <AccordionContent
           openAtStart={true}
-          title="למה יש חשיבות רבה לבקיאות במונחים כלכליים בסיסיים?"
+          title={
+            themeContext === "light" ? (
+              "למה יש חשיבות רבה לבקיאות במונחים כלכליים"
+            ) : (
+              <Fragment>
+                <Text>למה יש </Text>
+                <Text style={styles.highlight}>חשיבות רבה </Text>
+                <Text>לבקיאות במונחים כלכליים ? </Text>
+              </Fragment>
+            )
+          }
           text="במצב הכלכלי ובשל יוקר המחיה בישראל כיום,
           אין לאף אחד יותר את היכולת להישאר שאנן. 
           בסופו של דבר אנחנו אחראים על הכסף שלנו, 
@@ -33,7 +44,18 @@ export default function FAQ(props) {
 
         <View style={styles.accordionContainer}>
           <AccordionContent
-            title="מה המטרה שלנו?"
+            icon="bullseye-arrow"
+            title={
+              themeContext === "light" ? (
+                "מה המטרה שלנו?"
+              ) : (
+                <Fragment>
+                  <Text>מה </Text>
+                  <Text style={styles.highlight}>המטרה </Text>
+                  <Text>שלנו ?</Text>
+                </Fragment>
+              )
+            }
             text="במצב הכלכלי ובשל יוקר המחיה בישראל כיום,
           אין לאף אחד יותר את היכולת להישאר שאנן. 
           בסופו של דבר אנחנו אחראים על הכסף שלנו, 
@@ -45,7 +67,17 @@ export default function FAQ(props) {
         </View>
         <View style={styles.accordionContainer}>
           <AccordionContent
-            title="קצת עלינו"
+            title={
+              themeContext === "light" ? (
+                 "קצת עלינו..."
+              ) : (
+                <Fragment>
+                  <Text> קצת </Text>
+                  <Text style={styles.highlight}>עלינו...</Text>
+                </Fragment>
+              )
+            }
+            icon="information"
             text="במצב הכלכלי ובשל יוקר המחיה בישראל כיום,
           אין לאף אחד יותר את היכולת להישאר שאנן. 
           בסופו של דבר אנחנו אחראים על הכסף שלנו, 
@@ -57,7 +89,18 @@ export default function FAQ(props) {
         </View>
         <View style={styles.accordionContainer}>
           <AccordionContent
-            title="ספרים מומלצים בנושא כלכלת בית"
+            icon="book-open-blank-variant"
+            title={
+              themeContext === "light" ? (
+                "ספרים מומלצים בנושא כלכלת בית"
+              ) : (
+                <Fragment>
+                  <Text>ספרים </Text>
+                  <Text style={styles.highlight}>מומלצים</Text>
+                  <Text> בנושא כלכלת בית</Text>
+                </Fragment>
+              )
+            }
             text="במצב הכלכלי ובשל יוקר המחיה בישראל כיום,
           אין לאף אחד יותר את היכולת להישאר שאנן. 
           בסופו של דבר אנחנו אחראים על הכסף שלנו, 
@@ -86,5 +129,8 @@ const getStyles = (theme) =>
     },
     accordionContainer: {
       marginTop: 10,
+    },
+    highlight: {
+      color: theme.highlight,
     },
   });

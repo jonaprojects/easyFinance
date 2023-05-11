@@ -15,7 +15,7 @@ export default function Header(props) {
   return (
     <Text
       style={{
-        fontSize: 40,
+        fontSize: props.fontSize ?? 40,
         color: theme.h1,
         fontWeight: "bold",
         lineHeight: 48,

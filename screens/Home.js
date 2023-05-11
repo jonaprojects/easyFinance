@@ -25,7 +25,7 @@ export default function Home() {
   const theme = themeContext === "light" ? lightTheme : darkTheme;
   const styles = getStyles(theme);
 
-  const noResults = <Text>אין תוצאות.</Text>;
+  const noResults = <Text style={styles.noResults}>אין תוצאות.</Text>;
   const [results, setResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -61,7 +61,7 @@ export default function Home() {
   ];
   const renderTerm = ({ item }) => {
     return (
-      <View style={{ width: 325, marginRight: 20 }}>
+      <View style={{ width: 300, marginRight: 20 }}>
         <Card>
           <CardContent title={item.name} text={item.description} />
         </Card>
@@ -77,7 +77,7 @@ export default function Home() {
     <View style={styles.container}>
       <View style={styles.contentContainer}>
         <View style={styles.popularHeaderContainer}>
-          <Header>פופולרים</Header>
+          <Header fontSize={35}>פופולרים</Header>
         </View>
       </View>
       <View style={styles.termsListContainer}>
@@ -96,10 +96,13 @@ export default function Home() {
         <Searchbar
           placeholder="חפש"
           onChangeText={onChangeSearchQueryHandler}
-          style={{
-            backgroundColor: "#fff",
-            borderRadius: 15,
-            borderColor: "#8F8F8F",
+          onIconPress={onChangeSearchQueryHandler}
+          iconColor={theme.searchbar.iconColor}
+          placeholderTextColor={theme.searchbar.placeholderTextColor}
+          elevation={themeContext === "light" ? 3 : 5}
+          style={styles.searchbar}
+          textInputProps={{
+            style: { color: theme.searchbar.text },
           }}
         />
         <View style={styles.resultsHeaderContainer}>
@@ -125,6 +128,13 @@ const getStyles = (theme) =>
       marginTop: 25,
       marginBottom: 10,
     },
+    searchbar: {
+      backgroundColor: theme.searchbar.background,
+      color: theme.searchbar.text,
+      borderRadius: 5,
+      mode: "bar",
+      fontSize: 14,
+    },
     popularTermsContainer: {
       marginTop: 10,
       marginBottom: 10,
@@ -144,5 +154,9 @@ const getStyles = (theme) =>
     resultsHeaderContainer: {
       marginTop: 20,
       marginBottom: 10,
+    },
+    noResults: {
+      color: theme.secondaryText,
+      fontSize: 14,
     },
   });

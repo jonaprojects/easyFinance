@@ -12,17 +12,25 @@ export default lightTheme = {
   primaryButton: {
     background: "#B3FFC6",
     text: "#000000",
+    ripple: "#c5c5c5",
   },
   secondaryButton: {
     background: "#C3D5E8",
     text: "#000000",
+    ripple: "#c5c5c5",
   },
   secondaryText: "#676767",
+  secondaryHeader: "#272727",
   card: {
     background: "#ffffff",
     title: "#000000",
     text: "#676767",
     link: "#0072C6",
+    shadowColor: "#000000",
+    shadowElevation: 5,
+    borderWidth: 0,
+    borderColor: "#ffffff",
+    rippleColor: "#EFECEC",
   },
   accordion: {
     background: "#ffffff",
@@ -30,6 +38,11 @@ export default lightTheme = {
     text: "#676767",
     icon: "#000000",
   },
+  searchbar: {
+    background: "#fff",
+    text: "#000",
+  },
   background: "#F2F2F2",
   underline: "#92E3A9",
+  highlight: "#676767",
 };

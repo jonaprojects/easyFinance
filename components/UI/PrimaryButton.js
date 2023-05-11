@@ -13,6 +13,7 @@ export default function PrimaryButton(props) {
       backgroundColor={theme.primaryButton.background}
       color={theme.primaryButton.text}
       onPress={props.onPress}
+      ripple={theme.ripple ?? lightTheme.primaryButton.ripple}
     >
       {props.children}
     </CustomButton>

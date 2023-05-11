@@ -14,6 +14,7 @@ export default function SecondaryButton(props) {
       backgroundColor={theme.secondaryButton.background}
       color={theme.secondaryButton.text}
       onPress={props.onPress}
+      ripple={theme.secondaryButton.ripple ?? lightTheme.secondaryButton.ripple}
     >
       {props.children}
     </CustomButton>

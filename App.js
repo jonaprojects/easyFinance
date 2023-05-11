@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, StyleSheet, Text, View, Image } from "react-native";
+import {StyleSheet, Text, View, Image } from "react-native";
+import {SafeAreaView} from "react-native-safe-area-context";
 import Welcome from "./screens/Welcome";
 import { I18nManager } from "react-native";
 import { Fragment, useState } from "react";
@@ -7,11 +8,12 @@ import Navbar from "./components/Navbar";
 import Home from "./screens/Home.js";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import { statusBarHeight } from "expo-constants";
 import FAQ from "./screens/FAQ";
 import CurrentTheme from "./contexts/ThemeContext";
 
-I18nManager.forceRTL(true);
 I18nManager.allowRTL(true);
+I18nManager.forceRTL(true);
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +23,7 @@ export default function App() {
     <CurrentTheme.Provider value={[currentTheme, setCurrentTheme]}>
       <NavigationContainer>
         <Fragment>
-          <StatusBar style="auto" />
+          <StatusBar style="dark" />
           <SafeAreaView style={styles.container}>
             <Navbar />
             <Tab.Navigator

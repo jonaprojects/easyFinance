@@ -12,12 +12,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 import lightTheme from "../../themes/lightTheme";
 import darkTheme from "../../themes/darkTheme";
 import CurrentTheme from "../../contexts/ThemeContext";
+import { IconButton } from "react-native-paper";
 
-const AccordionListItem = ({ title, children, openAtStart }) => {
+const AccordionListItem = ({ title, children, openAtStart, icon }) => {
   //? handling the theme context (light or dark mode)
   const [themeContext, setThemeContext] = useContext(CurrentTheme);
   const theme = themeContext === "light" ? lightTheme : darkTheme;
-  const styles = getStyles(theme);
+  const styles = getStyles(theme, icon);
 
   const [open, setOpen] = useState(false);
   const animatedController = useRef(
@@ -60,7 +61,21 @@ const AccordionListItem = ({ title, children, openAtStart }) => {
     <SafeAreaView>
       <TouchableWithoutFeedback onPress={() => toggleListItem()}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{title}</Text>
+          <View style={styles.iconAndText}>
+            {icon && (
+              <IconButton
+                icon={icon}
+                compact={true}
+                style={{
+                  width: 25,
+                  height: 25,
+                  marginTop: 8,
+                }}
+              />
+            )}
+            <Text style={styles.title}>{title}</Text>
+          </View>
+
           <Animated.View
             style={{
               transform: [{ rotateZ: arrowAngle }],
@@ -89,15 +104,19 @@ const AccordionListItem = ({ title, children, openAtStart }) => {
 };
 export default AccordionListItem;
 
-const getStyles = (theme) =>
+const getStyles = (theme, icon) =>
   StyleSheet.create({
     bodyBackground: {
       backgroundColor: theme.accordion.background,
       overflow: "hidden",
     },
+    iconAndText: {
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignItems: "center",
+    },
     title: {
       color: theme.accordion.title,
-      marginRight: 8,
       fontSize: 18,
       fontWeight: "bold",
     },
@@ -108,7 +127,7 @@ const getStyles = (theme) =>
       alignItems: "center",
       paddingTop: 15,
       paddingBottom: 15,
-      paddingLeft: 15,
+      paddingLeft: icon ? 5 : 15,
       paddingRight: 15,
       backgroundColor: theme.accordion.background,
     },

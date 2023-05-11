@@ -10,8 +10,8 @@ export default function SubHeader(props) {
   return (
     <Text
       style={{
-        fontSize: 24,
-        color: theme.secondaryText,
+        fontSize: props.fontSize ?? 24,
+        color: theme.secondaryHeader,
         fontWeight: "bold",
       }}
     >

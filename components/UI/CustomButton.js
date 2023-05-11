@@ -58,6 +58,7 @@ export default function CustomButton(props) {
         borderWidth: props.borderWidth ?? 0,
         borderColor: props.borderColor ?? "#fff",
       }}
+      android_ripple={{ color: props.ripple }}
     >
       <Text
         style={{

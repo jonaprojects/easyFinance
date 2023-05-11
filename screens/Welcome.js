@@ -24,7 +24,9 @@ export default function Welcome() {
       <View style={styles.contentContainer}>
         <Header>אבודים בשיחה עם הנציג בבנק?</Header>
         <View style={styles.subheaderContainer}>
-          <SubHeader>הגיע הזמן לקחת את העניינים בידיים</SubHeader>
+          <SubHeader>
+            <Text style={{color: themeContext === "dark" ? theme.highlight: theme.text}}>הגיע הזמן</Text> לקחת את העניינים בידיים
+          </SubHeader>
         </View>
         <Image source={imagePath} style={styles.image}></Image>
         <View style={styles.buttons}>
@@ -55,19 +57,22 @@ const getStyles = (theme) =>
       textAlign: "right",
     },
     contentContainer: {
-      marginLeft: 35,
       marginRight: 35,
+      marginLeft: 30,
     },
     image: {
       width: 270,
       height: 170,
+      marginRight: 10,
     },
     subheaderContainer: {
       marginTop: 20,
+      marginBottom: 15,
     },
     buttons: {
       marginTop: 50,
       flexDirection: "row",
+      marginLeft: 10,
     },
     primaryButtonContainer: {
       marginRight: 10,
