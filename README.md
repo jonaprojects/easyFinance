@@ -20,4 +20,5 @@
 
 ## תצוגה מקדימה
 
-<img src="./screenshots/preview.png" alt="תצוגה מקדימה של היישום">
+<img src="./screenshots/preview.png" alt="תצוגה מקדימה של היישום"
+style="width: 80%; height: 80%; align: right">
