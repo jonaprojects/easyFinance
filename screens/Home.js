@@ -61,7 +61,7 @@ export default function Home() {
   ];
   const renderTerm = ({ item }) => {
     return (
-      <View style={{ width: 300, marginRight: 20 }}>
+      <View style={{ width: 300, marginRight: 10 }}>
         <Card>
           <CardContent title={item.name} text={item.description} />
         </Card>
