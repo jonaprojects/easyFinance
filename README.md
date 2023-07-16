@@ -20,5 +20,9 @@
 
 ## תצוגה מקדימה
 
+<div >
 <img src="./screenshots/preview.png" alt="תצוגה מקדימה של היישום"
-style="width: 80%; height: 80%; align: right; max-height: 500">
+align="right" height="80%" 
+width="80%"
+max-height=500
+ />
