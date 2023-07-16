@@ -23,6 +23,6 @@
 <div >
 <img src="./screenshots/preview.png" alt="תצוגה מקדימה של היישום"
 align="right" height="80%" 
-width="80%"
+width=250
 max-height=500
  />
