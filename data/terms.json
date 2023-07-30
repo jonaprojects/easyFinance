@@ -1,7 +1,17 @@
 [
   {
     "name": "ריבית",
-    "explanation": "",
+    "explanation": "אחוז מסויים מערך הלוואה שמתווסף לתשלום הסופי כל תקופה",
     "resources": []
-  }
+  },
+  {
+    "name": "אבטלה",
+    "explanation": "ללא עבודה",
+    "resources": []
+  },
+  {
+    "name": "אינפלציה",
+    "explanation": "ערך הכסף יורד",
+    "resources": []
+  },
 ]

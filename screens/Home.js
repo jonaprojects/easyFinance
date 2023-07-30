@@ -6,6 +6,8 @@ import {
   Image,
   ScrollView,
   FlatList,
+  Keyboard,
+  SafeAreaView,
 } from "react-native";
 import CurrentTheme from "../contexts/ThemeContext.js";
 import lightTheme from "../themes/lightTheme.js";
@@ -19,9 +21,11 @@ import Card from "../components/UI/Card/Card.js";
 import CardContent from "../components/UI/Card/CardContent.js";
 import { Searchbar } from "react-native-paper";
 
+import { TouchableWithoutFeedback } from "react-native";
+
 export default function Home() {
   const [themeContext, setThemeContext] = useContext(CurrentTheme);
-  console.log(`the theme context is ${themeContext} `);
+  //console.log(`the theme context is ${themeContext} `);
   const theme = themeContext === "light" ? lightTheme : darkTheme;
   const styles = getStyles(theme);
 
@@ -38,6 +42,11 @@ export default function Home() {
       </Card>;
     });
   }
+
+  const termData = require('../data/terms.json');
+  const [filteredDataState, setFilteredDataState] = useState([]);
+
+
 
   const popularTerms = [
     {
@@ -73,43 +82,70 @@ export default function Home() {
     setSearchQuery(query);
     //TODO update the results - fetch them from a JSON file here asynchronously
   };
+
+  const onIconClickHandler = () => {
+    //onChangeSearchQueryHandler(searchQuery); // Uses the state search query, one from onChangeText
+    console.log("Search icon clicked, query:" + searchQuery);
+    autoCompleteQuery(searchQuery);
+  }
+
+  const autoCompleteQuery = (query: string) => {
+    if (query.length >= 3) {
+      let filteredData = termData.filter(x => String(x.name).includes(query))
+      console.log(filteredData); // filtered data contains all term objects (name, explanation, resource array)
+      if (filteredData.length > 0)
+      {
+        setFilteredDataState(filteredData); 
+      }
+      // TODO: Add to flatlist to display under search bar.
+
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <View style={styles.contentContainer}>
-        <View style={styles.popularHeaderContainer}>
-          <Header fontSize={35}>פופולרים</Header>
-        </View>
-      </View>
-      <View style={styles.termsListContainer}>
-        <FlatList
-          data={popularTerms}
-          renderItem={renderTerm}
-          horizontal={true}
-          keyExtractor={(term) => term.id}
-          contentContainerStyle={styles.popularTermsContainer}
-        />
-      </View>
-      <View style={styles.contentContainer}>
-        <View style={styles.searchHeaderContainer}>
-          <SubHeader>חפש</SubHeader>
-        </View>
-        <Searchbar
-          placeholder="חפש"
-          onChangeText={onChangeSearchQueryHandler}
-          onIconPress={onChangeSearchQueryHandler}
-          iconColor={theme.searchbar.iconColor}
-          placeholderTextColor={theme.searchbar.placeholderTextColor}
-          elevation={themeContext === "light" ? 3 : 5}
-          style={styles.searchbar}
-          textInputProps={{
-            style: { color: theme.searchbar.text },
-          }}
-        />
-        <View style={styles.resultsHeaderContainer}>
-          <SubHeader>תוצאות</SubHeader>
-        </View>
-        {resultsJSX}
-      </View>
+     <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss()}>
+     <SafeAreaView>
+
+          <View style={styles.contentContainer}>
+            <View style={styles.popularHeaderContainer}>
+              <Header fontSize={35}>פופולרים</Header>
+            </View>
+          </View>
+          <View style={styles.termsListContainer}>
+            <FlatList
+              data={popularTerms}
+              renderItem={renderTerm}
+              horizontal={true}
+              keyExtractor={(term) => term.id}
+              contentContainerStyle={styles.popularTermsContainer}
+            />
+          </View>
+          <View style={styles.contentContainer}>
+            <View style={styles.searchHeaderContainer}>
+              <SubHeader>חפש</SubHeader>
+            </View>
+            <Searchbar
+              placeholder="חפש"
+              onChangeText={onChangeSearchQueryHandler}
+              onIconPress={onIconClickHandler}
+              onSubmitEditing={onIconClickHandler}
+              iconColor={theme.searchbar.iconColor}
+              placeholderTextColor={theme.searchbar.placeholderTextColor}
+              elevation={themeContext === "light" ? 3 : 5}
+              style={styles.searchbar}
+              textInputProps={{
+                style: { color: theme.searchbar.text },
+              }}
+            />
+            <View style={styles.resultsHeaderContainer}>
+              <SubHeader>תוצאות</SubHeader>
+            </View>
+            {resultsJSX}
+          </View>
+
+        </SafeAreaView>
+      </TouchableWithoutFeedback>
     </View>
   );
 }
